@@ -13,8 +13,19 @@ class NewsArticleListViewModel extends ChangeNotifier {
   void populateTopHeadlines() async {
     final articles = await _webservice.fetchTopHeadLines();
 
-    newsArticleList =
-        articles.map((e) => NewsArticleViewModel(newsArticle: e)).toList();
+    newsArticleList = articles
+        .map((article) => NewsArticleViewModel(newsArticle: article))
+        .toList();
+
+    notifyListeners();
+  }
+
+  void seach(String keyword) async {
+    final searchedArticles = await _webservice.fetchHeadlinesByKeyword(keyword);
+
+    newsArticleList = searchedArticles
+        .map((article) => NewsArticleViewModel(newsArticle: article))
+        .toList();
 
     notifyListeners();
   }

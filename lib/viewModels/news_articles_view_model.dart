@@ -8,9 +8,9 @@ class NewsArticleViewModel {
 
   String get title => _newsArticle.title;
 
-  String get description => _newsArticle.description;
+  String? get description => _newsArticle.description;
 
-  String get imageUrl => _newsArticle.urlToImage;
+  String? get imageUrl => _newsArticle.urlToImage;
 
   String get url => _newsArticle.url;
 }

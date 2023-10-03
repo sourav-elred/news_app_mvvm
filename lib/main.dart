@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_mvvm/screens/news_list.dart';
+import 'package:news_app_mvvm/screens/news_list_screen.dart';
 import 'package:news_app_mvvm/viewModels/news_articles_list_view_model.dart';
 import 'package:news_app_mvvm/viewModels/news_articles_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Fresh News',
       home: ChangeNotifierProvider(
         create: (context) => NewsArticleListViewModel(),
-        child: NewsList(),
+        child: NewsListScreen(),
       ),
     );
   }
