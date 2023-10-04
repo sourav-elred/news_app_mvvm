@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:news_app_mvvm/screens/news_article_details_screen.dart';
 import 'package:news_app_mvvm/viewModels/news_articles_list_view_model.dart';
@@ -28,7 +26,6 @@ class NewsListScreen extends StatelessWidget {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    log('onPressed');
                     if (_textEditingController.text.isNotEmpty) {
                       value.seach(_textEditingController.text);
                       _textEditingController.clear();
@@ -37,37 +34,37 @@ class NewsListScreen extends StatelessWidget {
                   icon: const Icon(Icons.done),
                 ),
               ),
-              onSubmitted: (val) {},
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: value.newsArticleList.length,
-                  itemBuilder: (context, index) {
-                    if (value.newsArticleList.isEmpty) {
-                      return const Center(child: Text('No News Found'));
-                    }
-                    return ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => NewsArticleDetailsScreen(
-                            article: value.newsArticleList[index],
+                itemCount: value.newsArticleList.length,
+                itemBuilder: (context, index) {
+                  if (value.newsArticleList.isEmpty) {
+                    return const Center(child: Text('No News Found'));
+                  }
+                  return ListTile(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => NewsArticleDetailsScreen(
+                          article: value.newsArticleList[index],
+                        ),
+                      ));
+                    },
+                    leading: value.newsArticleList[index].urlToImage != null
+                        ? Image.network(
+                            value.newsArticleList[index].urlToImage!,
+                            height: 100,
+                            width: 100,
+                          )
+                        : const SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Center(child: Text('No Preview')),
                           ),
-                        ));
-                      },
-                      leading: value.newsArticleList[index].imageUrl != null
-                          ? Image.network(
-                              value.newsArticleList[index].imageUrl!,
-                              height: 100,
-                              width: 100,
-                            )
-                          : const SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Center(child: Text('No Preview')),
-                            ),
-                      title: Text(value.newsArticleList[index].title),
-                    );
-                  }),
+                    title: Text(value.newsArticleList[index].title),
+                  );
+                },
+              ),
             ),
           ],
         );

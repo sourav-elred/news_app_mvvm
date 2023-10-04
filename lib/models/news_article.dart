@@ -4,11 +4,12 @@ class NewsArticle {
   final String url;
   final String? urlToImage;
 
-  NewsArticle(
-      {required this.title,
-      required this.description,
-      required this.url,
-      required this.urlToImage});
+  NewsArticle({
+    required this.title,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+  });
 
   factory NewsArticle.fromJson(Map<String, dynamic> json) => NewsArticle(
         title: json["title"],

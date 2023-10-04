@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_mvvm/viewModels/news_articles_view_model.dart';
+import 'package:news_app_mvvm/models/news_article.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsArticleDetailsScreen extends StatefulWidget {
   const NewsArticleDetailsScreen({super.key, required this.article});
 
-  final NewsArticleViewModel article;
+  final NewsArticle article;
 
   @override
   State<NewsArticleDetailsScreen> createState() =>
@@ -24,9 +24,7 @@ class _NewsArticleDetailsScreenState extends State<NewsArticleDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.article.title),
-      ),
+      appBar: AppBar(title: Text(widget.article.title)),
       body: WebViewWidget(controller: controller),
     );
   }
