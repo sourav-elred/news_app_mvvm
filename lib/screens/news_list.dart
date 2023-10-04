@@ -4,13 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:news_app_mvvm/viewModels/news_articles_list_view_model.dart';
 import 'package:provider/provider.dart';
 
-class NewsList extends StatelessWidget {
-  NewsList({super.key}) {
-    _newsArticleListViewModel.populateTopHeadlines();
-  }
+class NewsList extends StatefulWidget {
+  const NewsList({super.key});
 
-  NewsArticleListViewModel _newsArticleListViewModel =
-      NewsArticleListViewModel();
+  @override
+  State<NewsList> createState() => _NewsListState();
+}
+
+class _NewsListState extends State<NewsList> {
+  @override
+  void initState() {
+    context.read<NewsArticleListViewModel>().populateTopHeadlines();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class NewsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 leading: Image.network(
-                  value.newsArticleList[index].imageUrl,
+                  value.newsArticleList[index].urlToImage,
                   height: 100,
                   width: 100,
                 ),

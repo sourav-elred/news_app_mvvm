@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_mvvm/services/web_service.dart';
-import 'package:news_app_mvvm/viewModels/news_articles_view_model.dart';
+import 'package:news_app_mvvm/models/news_article.dart';
+import 'package:news_app_mvvm/services/api_service.dart';
 
 class NewsArticleListViewModel extends ChangeNotifier {
-  List<NewsArticleViewModel> newsArticleList = [];
-  final _webservice = WebService();
+  List<NewsArticle> newsArticleList = [];
+  final _webservice = ApiService();
 
   NewsArticleListViewModel() {
     populateTopHeadlines();
   }
 
   void populateTopHeadlines() async {
-    final articles = await _webservice.fetchTopHeadLines();
-
-    newsArticleList =
-        articles.map((e) => NewsArticleViewModel(newsArticle: e)).toList();
-
+    newsArticleList = await _webservice.fetchTopHeadLines();
     notifyListeners();
   }
 }

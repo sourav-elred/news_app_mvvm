@@ -1,10 +1,10 @@
+
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:news_app_mvvm/models/news_article.dart';
 
-class WebService {
+class ApiService {
   Future<List<NewsArticle>> fetchTopHeadLines() async {
     const url =
         "https://newsapi.org/v2/top-headlines?country=us&apiKey=dcfcdb7660da4cb3bfc441f2e19db63f";
